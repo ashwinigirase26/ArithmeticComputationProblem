@@ -34,3 +34,24 @@ ARR[0]=${DICT[TOTAL1]}
 ARR[1]=${DICT[TOTAL2]}
 ARR[2]=${DICT[TOTAL3]}
 ARR[3]=${DICT[TOTAL4]}
+
+#Sort into Decending order
+for ((ENTRY=0 ; ENTRY<4 ; ENTRY++))
+do
+
+        for ((ELEMENT=0 ; ELEMENT<4-ENTRY-1 ; ELEMENT++))
+        do
+                if ((${ARR[ELEMENT]} < ${ARR[$((ELEMENT+1))]} ))
+                then
+                        TEMP=${ARR[ELEMENT]}
+                        ARR[$ELEMENT]=${ARR[$((ELEMENT+1))]}
+                        ARR[$((ELEMENT+1))]=$TEMP
+                fi
+        done
+done
+
+echo "Decending Array:"
+for ((ELEMENT=0; ELEMENT<4; ELEMENT++))
+do
+        echo ${ARR[ELEMENT]}
+done
