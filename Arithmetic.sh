@@ -10,3 +10,7 @@ read -p "Enter value of c:" c
 result=$(($a + $b * $c))
 echo "compute a+b*c:"$result
 
+#Compute a*b+c
+
+result2=$(($a * $b + $c))
+echo "Compute a*b+c:-"$result2
