@@ -36,22 +36,41 @@ ARR[2]=${DICT[TOTAL3]}
 ARR[3]=${DICT[TOTAL4]}
 
 #Sort into Decending order
-for ((ENTRY=0 ; ENTRY<4 ; ENTRY++))
+echo "Sort the results to show the Computation Result in the Descending Order"
+for (( i = 0; i < 4 ; i++ ))
 do
-
-        for ((ELEMENT=0 ; ELEMENT<4-ENTRY-1 ; ELEMENT++))
-        do
-                if ((${ARR[ELEMENT]} < ${ARR[$((ELEMENT+1))]} ))
-                then
-                        TEMP=${ARR[ELEMENT]}
-                        ARR[$ELEMENT]=${ARR[$((ELEMENT+1))]}
-                        ARR[$((ELEMENT+1))]=$TEMP
-                fi
-        done
+   for (( j = $i; j < 4; j++ ))
+   do
+      if [ ${Array[$i]} -lt ${Array[$j]}  ]; then
+           t=${Array[$i]}
+           Array[$i]=${Array[$j]}
+           Array[$j]=$t
+      fi
+   done
 done
 
-echo "Decending Array:"
-for ((ELEMENT=0; ELEMENT<4; ELEMENT++))
+echo -e "\nSorted Numbers in descending Order:"
+for (( i=0; i < 4; i++ ))
 do
-        echo ${ARR[ELEMENT]}
+  echo ${Array[$i]}
+done
+
+#Sort into Ascending Order.
+echo "Sort the results to show the Computation Value in Ascending Order"
+for (( i = 0; i < 4 ; i++ ))
+do
+   for (( j = $i; j < 4; j++ ))
+   do
+      if [ ${Array[$i]} -gt ${Array[$j]}  ]; then
+           t=${Array[$i]}
+           Array[$i]=${Array[$j]}
+           Array[$j]=$t
+      fi
+   done
+done
+
+echo -e "\nSorted Numbers in Ascending Order:"
+for (( i=0; i < 4; i++ ))
+do
+  echo ${Array[$i]}
 done
